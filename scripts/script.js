@@ -69,6 +69,7 @@ async function detectLicensePlates(model) {
             stopScanning(); // Arrêter l'animation de balayage après une détection réussie
             //Verifier dans la base de donnees
             // checkLicensePlate(plateNumber);
+            // showAlert('Voici le numero de votre plaque :' + plateNumber);
             resultDiv.innerText = 'Voici le numero de votre plaque :' + plateNumber;
         } else {
             resultDiv.innerText = 'Impossible de lire la plaque.';
@@ -82,7 +83,10 @@ async function detectLicensePlates(model) {
 //     const model = await cocoSsd.load();
 //     const ocrModel = await loadOcrModel(); // Charger OCR Model ici, si nécessaire
 // })();
-document.getElementById('captureButton').addEventListener('click', () => {
+document.getElementById('captureButton').addEventListener('click', async () => {
+    const model = await cocoSsd.load();
+    // const ocrModel = await loadOcrModel();
+
     if (stream && scanning) {
         detectLicensePlates(model);
     } else {
