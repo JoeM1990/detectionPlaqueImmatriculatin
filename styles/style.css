@@ -25,6 +25,7 @@ body {
   .video-container {
     position: relative;
     margin-bottom: 20px;
+    /* max-width: 500px; */
   }
   
   video {
@@ -72,7 +73,7 @@ body {
     color: #555;
   }
   
-  /* Ligne de balayage */
+ 
   .scan-line {
     position: absolute;
     top: 0;
