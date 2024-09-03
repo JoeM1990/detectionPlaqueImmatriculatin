@@ -55,4 +55,25 @@ function stopScanning() {
     scanning = false;
 }
 
+// Détecter les plaques d'immatriculation
+async function detectLicensePlates(model) {
+    const predictions = await model.detect(video);
+    const plates = predictions.filter(prediction => prediction.class === 'car');
+  
+    if (plates.length > 0) {
+      // Détecter les caractères réels sur la plaque avec OCR
+      const ocrModel = await loadOcrModel();
+      const plateNumber = await ocrModel.recognize(video); // Utiliser la vidéo ou l'image capturée pour lire les caractères
+  
+      if (plateNumber) {
+        stopScanning(); // Arrêter l'animation de balayage après une détection réussie
+        checkLicensePlate(plateNumber);
+      } else {
+        resultDiv.innerText = 'Impossible de lire la plaque.';
+      }
+    } else {
+      resultDiv.innerText = 'Aucune plaque détectée.';
+    }
+  }
+
 
