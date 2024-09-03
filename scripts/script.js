@@ -39,7 +39,7 @@ function stopCamera() {
         stream = null;
         video.srcObject = null;
         toggleCameraButton.innerHTML = '<i class="fas fa-video"></i>';
-          stopScanning();
+        stopScanning();
     }
 }
 
@@ -47,12 +47,12 @@ function stopCamera() {
 function startScanning() {
     scanLine.style.display = 'block';
     scanning = true;
-  }
-  
-  // Arrêter l'animation de balayage
-  function stopScanning() {
+}
+
+// Arrêter l'animation de balayage
+function stopScanning() {
     scanLine.style.display = 'none';
     scanning = false;
-  }
+}
 
 
