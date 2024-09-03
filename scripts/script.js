@@ -31,6 +31,6 @@ function stopCamera() {
       stream = null;
       video.srcObject = null;
       toggleCameraButton.innerHTML = '<i class="fas fa-video"></i>';
-      stopScanning();
+    //   stopScanning();
     }
   }
