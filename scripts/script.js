@@ -86,7 +86,7 @@ document.getElementById('captureButton').addEventListener('click', () => {
     if (stream && scanning) {
         detectLicensePlates(model);
     } else {
-        alert('Veuillez d\'abord activer la caméra.');
+        showAlert('Veuillez d\'abord activer la caméra.');
     }
 });
 
@@ -97,7 +97,7 @@ function showAlert(message) {
 
     setTimeout(function () {
         document.getElementById("messageModal").style.display = "none";
-    }, 1000);
+    }, 1500);
 
 }
 
