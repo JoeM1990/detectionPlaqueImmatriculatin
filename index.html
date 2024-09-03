@@ -1,38 +1,54 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Détection de Plaques d'Immatriculation</title>
-  <link rel="stylesheet" href="styles/style.css">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détection de Plaques d'Immatriculation</title>
+    <link rel="stylesheet" href="styles/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
     <div class="navbar">
-        <img src="assets/user.jpg" class="login-icon" alt="Login" onclick="openModal()"> 
+        <img src="assets/user.jpg" class="login-icon" alt="Login" onclick="openModal()">
     </div>
-    
-  <div class="container">
-    <h1>Détection de Plaques d'Immatriculation</h1>
-    <div class="video-container">
-      <video id="video" autoplay playsinline></video>
-      <div id="scanLine" class="scan-line"></div>
-      <button id="toggleCameraButton" class="camera-button"><i class="fas fa-video"></i></button>
-    </div>
-    <button id="captureButton" class="capture-button">Analyser</button>
-    <div id="result" class="result"></div>
-  </div>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/canvas-drawer"></script>
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"></script>
-  
-  <script src="scripts/script.js"></script>
+    <div class="container">
+        <h1>Détection de Plaques d'Immatriculation</h1>
+        <div class="video-container">
+            <video id="video" autoplay playsinline></video>
+            <div id="scanLine" class="scan-line"></div>
+            <button id="toggleCameraButton" class="camera-button"><i class="fas fa-video"></i></button>
+        </div>
+        <button id="captureButton" class="capture-button">Analyser</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 style="color: #28a745;">Informations sur l'application</h2>
+            <p>Cet outil vous permet de collecter des données sur la fertilité du sol et de prédire la qualité du sol
+                basé sur les mesures saisies.</p>
+            <p>Utilisez les champs ci-dessus pour entrer les données du sol, puis cliquez sur "Soumettre" pour voir la
+                prédiction.</p> <br>
+            <p><a href="https://github.com/JoeM1990" target="_blank">By Joe MONKILA</a></p>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/canvas-drawer"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"></script>
+
+    <script src="scripts/script.js"></script>
 </body>
+
 </html>

@@ -8,29 +8,29 @@ let scanning = false;
 
 // Charger le modèle OCR (Optical Character Recognition)
 async function loadOcrModel() {
-  const model = await tf.ocr.Model.load();
-  return model;
+    const model = await tf.ocr.Model.load();
+    return model;
 }
 
 toggleCameraButton.addEventListener('click', async () => {
     if (!stream) {
-      stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      video.srcObject = stream;
-      toggleCameraButton.innerHTML = '<i class="fas fa-video-slash"></i>';
-      startScanning();
+        stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+        toggleCameraButton.innerHTML = '<i class="fas fa-video-slash"></i>';
+        startScanning();
     } else {
-      stopCamera();
+        stopCamera();
     }
-  });
+});
 
 
 function stopCamera() {
     if (stream) {
-      const tracks = stream.getTracks();
-      tracks.forEach(track => track.stop());
-      stream = null;
-      video.srcObject = null;
-      toggleCameraButton.innerHTML = '<i class="fas fa-video"></i>';
-    //   stopScanning();
+        const tracks = stream.getTracks();
+        tracks.forEach(track => track.stop());
+        stream = null;
+        video.srcObject = null;
+        toggleCameraButton.innerHTML = '<i class="fas fa-video"></i>';
+        //   stopScanning();
     }
-  }
+}
