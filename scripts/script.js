@@ -22,3 +22,15 @@ toggleCameraButton.addEventListener('click', async () => {
       stopCamera();
     }
   });
+
+
+function stopCamera() {
+    if (stream) {
+      const tracks = stream.getTracks();
+      tracks.forEach(track => track.stop());
+      stream = null;
+      video.srcObject = null;
+      toggleCameraButton.innerHTML = '<i class="fas fa-video"></i>';
+      stopScanning();
+    }
+  }
