@@ -67,7 +67,8 @@ async function detectLicensePlates(model) {
   
       if (plateNumber) {
         stopScanning(); // Arrêter l'animation de balayage après une détection réussie
-        checkLicensePlate(plateNumber);
+        //Verifier dans la base de donnees
+        // checkLicensePlate(plateNumber);
       } else {
         resultDiv.innerText = 'Impossible de lire la plaque.';
       }
