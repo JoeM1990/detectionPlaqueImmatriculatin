@@ -6,6 +6,14 @@ const scanLine = document.getElementById('scanLine');
 let stream = null;
 let scanning = false;
 
+function openModal() {
+    document.getElementById("infoModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("infoModal").style.display = "none";
+}
+
 // Charger le modèle OCR (Optical Character Recognition)
 async function loadOcrModel() {
     const model = await tf.ocr.Model.load();
