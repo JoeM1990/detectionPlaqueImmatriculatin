@@ -8,7 +8,17 @@ let scanning = false;
 
 // Charger le modèle OCR (Optical Character Recognition)
 async function loadOcrModel() {
-  // Exemple: Charger le modèle OCR personnalisé
   const model = await tf.ocr.Model.load();
   return model;
 }
+
+toggleCameraButton.addEventListener('click', async () => {
+    if (!stream) {
+      stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video.srcObject = stream;
+      toggleCameraButton.innerHTML = '<i class="fas fa-video-slash"></i>';
+      startScanning();
+    } else {
+      stopCamera();
+    }
+  });
