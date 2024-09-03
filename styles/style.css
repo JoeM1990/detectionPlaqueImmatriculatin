@@ -71,4 +71,29 @@ body {
     font-size: 18px;
     color: #555;
   }
+
+  .scan-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid red;
+    box-sizing: border-box;
+    pointer-events: none;
+    animation: scanAnimation 3s infinite;
+    z-index: 1;
+  }
+  
+  @keyframes scanAnimation {
+    0% {
+      transform: translateY(-100%);
+    }
+    50% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
   
