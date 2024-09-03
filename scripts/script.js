@@ -78,17 +78,16 @@ async function detectLicensePlates(model) {
     }
 }
 
-(async function () {
-    const model = await cocoSsd.load();
-    const ocrModel = await loadOcrModel(); // Charger OCR Model ici, si nécessaire
-
-    document.getElementById('captureButton').addEventListener('click', () => {
-        if (stream && scanning) {
-            detectLicensePlates(model);
-        } else {
-            alert('Veuillez d\'abord activer la caméra.');
-        }
-    });
-})();
+// (async function () {
+//     const model = await cocoSsd.load();
+//     const ocrModel = await loadOcrModel(); // Charger OCR Model ici, si nécessaire
+// })();
+document.getElementById('captureButton').addEventListener('click', () => {
+    if (stream && scanning) {
+        detectLicensePlates(model);
+    } else {
+        alert('Veuillez d\'abord activer la caméra.');
+    }
+});
 
 
