@@ -5,32 +5,44 @@ const scanLine = document.getElementById('scanLine');
 
 let stream = null;
 let scanning = false;
+let detectionModel = null;  
+let ocrModel = null;        
 
-function openModal() {
-    document.getElementById("infoModal").style.display = "block";
-}
+// Charger les modèles dès le chargement de la page
+(async function() {
+    try {
+        detectionModel = await cocoSsd.load();  
+        ocrModel = await loadOcrModel();        // Charger le modèle OCR ici
+        console.log('Les modèles sont chargés et prêts.');
+    } catch (error) {
+        console.error('Erreur lors du chargement des modèles:', error);
+        showAlert('Erreur lors du chargement des modèles. Veuillez réessayer.');
+    }
+})();
 
-function closeModal() {
-    document.getElementById("infoModal").style.display = "none";
-}
-
-// Charger le modèle OCR (Optical Character Recognition)
+// Charger le modèle OCR (Assurez-vous que le modèle et la méthode sont corrects)
 async function loadOcrModel() {
-    const model = await tf.ocr.Model.load();
-    return model;
+    // Remplacer par le chargement correct du modèle OCR
+    // Exemple fictif car tf.ocr.Model n'existe pas
+    return await tf.loadLayersModel('chemin/vers/le/model-ocr.json');
 }
 
+// Activer/Désactiver la caméra
 toggleCameraButton.addEventListener('click', async () => {
     if (!stream) {
-        stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        video.srcObject = stream;
-        toggleCameraButton.innerHTML = '<i class="fas fa-video-slash"></i>';
-        startScanning();
+        try {
+            stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            video.srcObject = stream;
+            toggleCameraButton.innerHTML = '<i class="fas fa-video-slash"></i>';
+            startScanning();
+        } catch (error) {
+            console.error('Erreur lors de l\'activation de la caméra:', error);
+            showAlert('Impossible d\'accéder à la caméra.');
+        }
     } else {
         stopCamera();
     }
 });
-
 
 function stopCamera() {
     if (stream) {
@@ -56,52 +68,50 @@ function stopScanning() {
 }
 
 // Détecter les plaques d'immatriculation
-async function detectLicensePlates(model) {
-    const predictions = await model.detect(video);
-    const plates = predictions.filter(prediction => prediction.class === 'car');
+async function detectLicensePlates() {
+    if (!detectionModel || !ocrModel) {
+        showAlert('Les modèles ne sont pas encore chargés. Veuillez patienter.');
+        return;
+    }
 
-    if (plates.length > 0) {
-        // Détecter les caractères réels sur la plaque avec OCR
-        const ocrModel = await loadOcrModel();
-        const plateNumber = await ocrModel.recognize(video); // Utiliser la vidéo ou l'image capturée pour lire les caractères
+    try {
+        const predictions = await detectionModel.detect(video);
+        const plates = predictions.filter(prediction => prediction.class === 'car'); // Remplacer par une classe de plaque si possible
 
-        if (plateNumber) {
-            stopScanning(); // Arrêter l'animation de balayage après une détection réussie
-            
-            // checkLicensePlate(plateNumber);
-            resultDiv.innerText = plateNumber;
+        if (plates.length > 0) {
+            // Détecter les caractères réels sur la plaque avec OCR
+            const plateNumber = await ocrModel.recognize(video); // Utiliser la vidéo ou l'image capturée pour lire les caractères
+
+            if (plateNumber) {
+                stopScanning(); // Arrêter l'animation de balayage après une détection réussie
+                resultDiv.innerText = plateNumber;
+                // checkLicensePlate(plateNumber); // Décommenter si vous avez une fonction pour vérifier dans Firebase
+            } else {
+                resultDiv.innerText = 'Impossible de lire la plaque.';
+            }
         } else {
-            resultDiv.innerText = 'Impossible de lire la plaque.';
+            resultDiv.innerText = 'Aucune plaque détectée.';
         }
-    } else {
-        resultDiv.innerText = 'Aucune plaque détectée.';
+    } catch (error) {
+        console.error('Erreur lors de la détection:', error);
+        resultDiv.innerText = 'Erreur lors de la détection.';
     }
 }
 
-// (async function () {
-//     const model = await cocoSsd.load();
-//     const ocrModel = await loadOcrModel(); // Charger OCR Model ici, si nécessaire
-// })();
-document.getElementById('captureButton').addEventListener('click', async () => {
-    const model = await cocoSsd.load();
-    // const ocrModel = await loadOcrModel();
-
+// Déclencher la détection sur le clic du bouton
+document.getElementById('captureButton').addEventListener('click', () => {
     if (stream && scanning) {
-        detectLicensePlates(model);
+        detectLicensePlates();
     } else {
         showAlert('Veuillez d\'abord activer la caméra.');
     }
 });
 
 function showAlert(message) {
-
     document.getElementById('infos-message').textContent = message;
     document.getElementById("messageModal").style.display = "block";
 
-    setTimeout(function () {
+    setTimeout(function() {
         document.getElementById("messageModal").style.display = "none";
     }, 1500);
-
 }
-
-
