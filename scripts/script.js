@@ -13,6 +13,7 @@ let ocrModel = null;
     try {
         detectionModel = await cocoSsd.load();  
         ocrModel = await loadOcrModel();        // Charger le modèle OCR ici
+        showAlert('Les modèles sont chargés et prêts.');
         console.log('Les modèles sont chargés et prêts.');
     } catch (error) {
         console.error('Erreur lors du chargement des modèles:', error);
