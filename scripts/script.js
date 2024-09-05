@@ -24,7 +24,7 @@ let ocrModel = null;
 // Charger le modèle OCR (Assurez-vous que le modèle et la méthode sont corrects)
 async function loadOcrModel() {
     // Remplacer par le chargement correct du modèle OCR
-    return await tf.loadLayersModel('../models/model-ocr.json');
+    return await tf.loadLayersModel('../models/model.json');
 }
 
 // Activer/Désactiver la caméra
