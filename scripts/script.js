@@ -11,7 +11,7 @@ let ocrModel = null;
 // Charger les modèles dès le chargement de la page
 (async function() {
     try {
-        detectionModel = await cocoSsd.load();  
+        detectionModel = await tf.loadLayersModel('../models/model.json');
         ocrModel = await loadOcrModel();        
         showAlert('Les modèles sont chargés et prêts.');
         console.log('Les modèles sont chargés et prêts.');
@@ -23,7 +23,7 @@ let ocrModel = null;
 
 // Charger le modèle OCR personnalisé
 async function loadOcrModel() {
-    return await tf.loadLayersModel('../models/model.json');
+    return await tf.loadLayersModel('../models/ocr/model.tflite');
 }
 
 // Activer/Désactiver la caméra
