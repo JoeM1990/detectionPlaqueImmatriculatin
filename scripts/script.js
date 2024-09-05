@@ -23,6 +23,7 @@ let ocrModel = null;
 
 // Charger le modèle OCR personnalisé
 async function loadOcrModel() {
+    await tf.setBackend('wasm');
     return await tflite.loadTFLiteModel('../models/ocr/model.tflite');
 }
 
