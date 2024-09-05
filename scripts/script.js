@@ -74,21 +74,29 @@ async function detectLicensePlates() {
     }
 
     try {
-        const predictions = await detectionModel.detect(video);
-        const plates = predictions.filter(prediction => prediction.class === 'car'); // Remplacer par la détection de véhicules
+        // Capturer une image de la vidéo
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        // Convertir l'image en tenseur pour le modèle de détection
+        const imgTensor = tf.browser.fromPixels(canvas).expandDims(0).toFloat().div(255);
+
+        // Prédiction du modèle de détection
+        const predictions = await detectionModel.executeAsync(imgTensor);
+
+        // Filtrer les prédictions pour ne garder que les véhicules (selon votre modèle)
+        const plates = predictions[0].arraySync().filter(prediction => prediction[4] > 0.5); // Ajuster le seuil selon votre modèle
 
         if (plates.length > 0) {
-            // Capture d'une image de la vidéo
-            const canvas = document.createElement('canvas');
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-            
-            // Utilisation de votre modèle OCR pour reconnaître les caractères
-            const imgTensor = tf.browser.fromPixels(canvas).expandDims(0).toFloat().div(255); // Préparer l'image pour le modèle
-            const predictions = await ocrModel.predict(imgTensor); // Prédiction des caractères
-            const plateNumber = predictions.dataSync(); // Récupérer le texte prédit
+            // Extraire la région d'intérêt (plaque d'immatriculation) pour le modèle OCR
+            const plateTensor = imgTensor.slice([0, 0, 0], [1, 3, 640, 640]);  // Ajustez la dimension selon vos besoins
+
+            // Utiliser le modèle OCR pour reconnaître les caractères
+            const ocrPredictions = await ocrModel.executeAsync(plateTensor);
+            const plateNumber = ocrPredictions.dataSync(); // Récupérer la prédiction du texte
 
             if (plateNumber) {
                 stopScanning();
