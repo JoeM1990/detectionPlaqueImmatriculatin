@@ -5,27 +5,19 @@ const scanLine = document.getElementById('scanLine');
 
 let stream = null;
 let scanning = false;
-let detectionModel = null;  
-let ocrModel = null;        
+let detectionModel = null;
 
 // Charger les modèles dès le chargement de la page
 (async function() {
     try {
         detectionModel = await cocoSsd.load();  
-        ocrModel = await loadOcrModel();        // Charger le modèle OCR ici
-        showAlert('Les modèles sont chargés et prêts.');
-        console.log('Les modèles sont chargés et prêts.');
+        showAlert('Le modèle de détection est chargé et prêt.');
+        console.log('Le modèle de détection est chargé et prêt.');
     } catch (error) {
-        console.error('Erreur lors du chargement des modèles:', error);
-        showAlert('Erreur lors du chargement des modèles. Veuillez réessayer.');
+        console.error('Erreur lors du chargement du modèle de détection:', error);
+        showAlert('Erreur lors du chargement du modèle. Veuillez réessayer.');
     }
 })();
-
-// Charger le modèle OCR (Assurez-vous que le modèle et la méthode sont corrects)
-async function loadOcrModel() {
-    // Remplacer par le chargement correct du modèle OCR
-    return await tf.loadLayersModel();
-}
 
 // Activer/Désactiver la caméra
 toggleCameraButton.addEventListener('click', async () => {
@@ -69,8 +61,8 @@ function stopScanning() {
 
 // Détecter les plaques d'immatriculation
 async function detectLicensePlates() {
-    if (!detectionModel || !ocrModel) {
-        showAlert('Les modèles ne sont pas encore chargés. Veuillez patienter.');
+    if (!detectionModel) {
+        showAlert('Le modèle de détection n\'est pas encore chargé. Veuillez patienter.');
         return;
     }
 
@@ -79,16 +71,27 @@ async function detectLicensePlates() {
         const plates = predictions.filter(prediction => prediction.class === 'car'); // Remplacer par une classe de plaque si possible
 
         if (plates.length > 0) {
-            // Détecter les caractères réels sur la plaque avec OCR
-            const plateNumber = await ocrModel.recognize(video); // Utiliser la vidéo ou l'image capturée pour lire les caractères
-
-            if (plateNumber) {
+            // Capture d'une image de la vidéo pour l'OCR
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // Détection des caractères sur la plaque avec Tesseract.js
+            Tesseract.recognize(
+                canvas,
+                'eng',
+                {
+                    logger: info => console.log(info), // Suivi de la progression
+                }
+            ).then(({ data: { text } }) => {
                 stopScanning(); // Arrêter l'animation de balayage après une détection réussie
-                resultDiv.innerText = plateNumber;
-                // checkLicensePlate(plateNumber); // Décommenter si vous avez une fonction pour vérifier dans Firebase
-            } else {
-                resultDiv.innerText = 'Impossible de lire la plaque.';
-            }
+                resultDiv.innerText = `Plaque détectée : ${text.trim()}`;
+            }).catch(error => {
+                console.error('Erreur OCR:', error);
+                resultDiv.innerText = 'Erreur lors de la reconnaissance de la plaque.';
+            });
         } else {
             resultDiv.innerText = 'Aucune plaque détectée.';
         }
