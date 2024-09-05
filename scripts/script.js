@@ -11,8 +11,8 @@ let ocrModel = null;
 // Charger les modèles dès le chargement de la page
 (async function() {
     try {
-        detectionModel = await cocoSsd.load();  // Détection des véhicules
-        ocrModel = await loadOcrModel();        // Charger votre modèle OCR personnalisé ici
+        detectionModel = await cocoSsd.load();  
+        ocrModel = await loadOcrModel();        
         showAlert('Les modèles sont chargés et prêts.');
         console.log('Les modèles sont chargés et prêts.');
     } catch (error) {
@@ -23,7 +23,6 @@ let ocrModel = null;
 
 // Charger le modèle OCR personnalisé
 async function loadOcrModel() {
-    // Remplacer par le chemin vers votre modèle JSON/TensorFlow.js
     return await tf.loadLayersModel('../models/model.json');
 }
 
