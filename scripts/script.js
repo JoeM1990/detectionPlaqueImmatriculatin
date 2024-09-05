@@ -23,7 +23,7 @@ let ocrModel = null;
 
 // Charger le modèle OCR personnalisé
 async function loadOcrModel() {
-    return await tf.loadLayersModel('../models/ocr/model.tflite');
+    return await tflite.loadTFLiteModel('../models/ocr/model.tflite');
 }
 
 // Activer/Désactiver la caméra
