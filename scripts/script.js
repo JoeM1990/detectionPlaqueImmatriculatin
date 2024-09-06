@@ -11,6 +11,9 @@ let ocrModel = null;
 // Charger les modèles dès le chargement de la page
 (async function() {
     try {
+        await tf.setBackend('webgl');
+        await tf.ready();
+        
         detectionModel = await tf.loadGraphModel('../models/model.json');
         ocrModel = await loadOcrModel();        
         showAlert('Les modèles sont chargés et prêts.');
