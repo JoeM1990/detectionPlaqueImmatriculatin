@@ -110,7 +110,6 @@ async function detectLicensePlates() {
         const predictions = await detectionModel.executeAsync({ images: imgTensor });
 
         console.log(predictions);
-        predictions[0].print();
 
         // Filtrer les prédictions pour ne garder que les véhicules (selon votre modèle)
         const plates = predictions[0].arraySync().filter(prediction => prediction[4] > 0.5); // Ajuster le seuil selon votre modèle
