@@ -13,6 +13,10 @@ let ocrModel = null;
     try {
         await tf.setBackend('webgl');
         await tf.ready();
+        
+        if (!tflite) {
+            throw new Error('tflite non défini ou non disponible');
+        }
 
         detectionModel = await tf.loadGraphModel('../models/model.json');
         ocrModel = await loadOcrModel();        
