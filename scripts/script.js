@@ -153,6 +153,7 @@ function showAlert(message) {
     }, 1500);
 }
 
+
 function openModal() {
     document.getElementById("infoModal").style.display = "block";
 }
