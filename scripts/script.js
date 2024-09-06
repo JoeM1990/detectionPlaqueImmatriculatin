@@ -13,10 +13,6 @@ let ocrModel = null;
     try {
         await tf.setBackend('webgl');
         await tf.ready();
-        
-        if (!tflite) {
-            throw new Error('tflite non défini ou non disponible');
-        }
 
         detectionModel = await tf.loadGraphModel('../models/model.json');
         ocrModel = await loadOcrModel();        
@@ -34,7 +30,16 @@ async function loadOcrModel() {
         await tf.setBackend('wasm');
         await tf.ready();
 
+        if (!tflite) {
+            throw new Error('tflite non défini ou non disponible');
+        }
+
         const ocrModel = await tflite.loadTFLiteModel('../models/ocr/model.tflite');
+
+        if (!ocrModel) {
+            throw new Error("Échec du chargement du modèle OCR.");
+        }
+        
         return ocrModel;
     } catch (error) {
         console.error("Erreur lors du chargement du modèle OCR:", error);
