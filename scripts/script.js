@@ -39,7 +39,7 @@ async function loadOcrModel() {
         if (!ocrModel) {
             throw new Error("Échec du chargement du modèle OCR.");
         }
-        
+
         return ocrModel;
     } catch (error) {
         console.error("Erreur lors du chargement du modèle OCR:", error);
@@ -113,7 +113,7 @@ async function detectLicensePlates() {
 
         if (plates.length > 0) {
             // Extraire la région d'intérêt (plaque d'immatriculation) pour le modèle OCR
-            const plateTensor = imgTensor.slice([0, 0, 0], [1, 3, 640, 640]);  // Ajustez la dimension selon vos besoins
+            const plateTensor = imgTensor.slice([0, 0, 0], [1, 3, 640, 640]); 
 
             // Utiliser le modèle OCR pour reconnaître les caractères
             const ocrPredictions = await ocrModel.executeAsync(plateTensor);
