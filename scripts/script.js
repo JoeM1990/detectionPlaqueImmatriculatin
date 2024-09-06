@@ -103,8 +103,9 @@ async function detectLicensePlates() {
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
         // Convertir l'image en tenseur pour le modèle de détection
-        const imgTensor = tf.browser.fromPixels(canvas).expandDims(0).toFloat().div(255);
+        let imgTensor = tf.browser.fromPixels(canvas).expandDims(0).toFloat().div(255);
         imgTensor = tf.image.resizeBilinear(imgTensor, [640, 640]);
+        imgTensor = tf.transpose(imgTensor, [0, 3, 1, 2]);
 
         // Prédiction du modèle de détection
         const predictions = await detectionModel.executeAsync(imgTensor);
