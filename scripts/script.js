@@ -116,7 +116,7 @@ async function detectLicensePlates() {
             const plateTensor = imgTensor.slice([0, 0, 0], [1, 3, 640, 640]); 
 
             // Utiliser le modèle OCR pour reconnaître les caractères
-            const ocrPredictions = await detectionModel.executeAsync(plateTensor);
+            const ocrPredictions = await ocrModel.executeAsync(plateTensor);
             const plateNumber = ocrPredictions.dataSync(); // Récupérer la prédiction du texte
 
             if (plateNumber) {
