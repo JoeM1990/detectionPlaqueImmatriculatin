@@ -15,7 +15,7 @@ let ocrModel = null;
         // await tf.ready();
 
         detectionModel = await tf.loadGraphModel('../models/model.json');
-        //ocrModel = await loadOcrModel();        
+        ocrModel = await loadOcrModel();        
         showAlert('Les modèles sont chargés et prêts.');
         console.log('Les modèles sont chargés et prêts.');
     } catch (error) {
@@ -34,7 +34,7 @@ async function loadOcrModel() {
         //     throw new Error('tflite non défini ou non disponible');
         // }
 
-        const ocrModel = await tf.loadGraphModel('../models/ocr/model.tflite');
+        const ocrModel = await tf.loadGraphModel('../models/crnn/model.json');
 
         // if (!ocrModel) {
         //     throw new Error("Échec du chargement du modèle OCR.");
