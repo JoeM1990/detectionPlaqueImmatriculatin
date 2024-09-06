@@ -152,3 +152,11 @@ function showAlert(message) {
         document.getElementById("messageModal").style.display = "none";
     }, 1500);
 }
+
+function openModal() {
+    document.getElementById("infoModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("infoModal").style.display = "none";
+}
