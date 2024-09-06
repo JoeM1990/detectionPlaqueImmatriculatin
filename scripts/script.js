@@ -108,14 +108,14 @@ async function detectLicensePlates() {
         imgTensor = tf.transpose(imgTensor, [0, 3, 1, 2]);
 
         // Prédiction du modèle de détection
-        const predictions = await detectionModel.executeAsync(imgTensor);
+        const predictions = await detectionModel.executeAsync({ images: imgTensor });
 
         // Filtrer les prédictions pour ne garder que les véhicules (selon votre modèle)
         const plates = predictions[0].arraySync().filter(prediction => prediction[4] > 0.5); // Ajuster le seuil selon votre modèle
 
         if (plates.length > 0) {
             // Extraire la région d'intérêt (plaque d'immatriculation) pour le modèle OCR
-            const plateTensor = imgTensor.slice([0, 0, 0], [1, 3, 640, 640]); 
+            const plateTensor = imgTensor.slice([0, 0, 0], [1, 640, 640, 3]); 
 
             // Utiliser le modèle OCR pour reconnaître les caractères
             const ocrPredictions = await ocrModel.executeAsync(plateTensor);
