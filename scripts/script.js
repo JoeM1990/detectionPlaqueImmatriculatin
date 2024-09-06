@@ -11,11 +11,11 @@ let ocrModel = null;
 // Charger les modèles dès le chargement de la page
 (async function() {
     try {
-        await tf.setBackend('webgl');
-        await tf.ready();
+        // await tf.setBackend('wasm');
+        // await tf.ready();
 
         detectionModel = await tf.loadGraphModel('../models/model.json');
-        ocrModel = await loadOcrModel();        
+        //ocrModel = await loadOcrModel();        
         showAlert('Les modèles sont chargés et prêts.');
         console.log('Les modèles sont chargés et prêts.');
     } catch (error) {
@@ -116,7 +116,7 @@ async function detectLicensePlates() {
             const plateTensor = imgTensor.slice([0, 0, 0], [1, 3, 640, 640]); 
 
             // Utiliser le modèle OCR pour reconnaître les caractères
-            const ocrPredictions = await ocrModel.executeAsync(plateTensor);
+            const ocrPredictions = await detectionModel.executeAsync(plateTensor);
             const plateNumber = ocrPredictions.dataSync(); // Récupérer la prédiction du texte
 
             if (plateNumber) {
