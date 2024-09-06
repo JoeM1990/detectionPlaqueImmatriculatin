@@ -95,7 +95,6 @@ async function detectLicensePlates() {
     }
 
     try {
-        // Capturer une image de la vidéo
         const canvas = document.createElement('canvas');
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
