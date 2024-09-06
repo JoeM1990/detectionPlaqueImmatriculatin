@@ -27,18 +27,18 @@ let ocrModel = null;
 // Charger le modèle OCR personnalisé
 async function loadOcrModel() {
     try {
-        await tf.setBackend('wasm');
-        await tf.ready();
+        // await tf.setBackend('wasm');
+        // await tf.ready();
 
-        if (!tflite) {
-            throw new Error('tflite non défini ou non disponible');
-        }
+        // if (!tflite) {
+        //     throw new Error('tflite non défini ou non disponible');
+        // }
 
-        const ocrModel = await tflite.loadTFLiteModel('../models/ocr/model.tflite');
+        const ocrModel = await tf.loadGraphModel('../models/ocr/model.tflite');
 
-        if (!ocrModel) {
-            throw new Error("Échec du chargement du modèle OCR.");
-        }
+        // if (!ocrModel) {
+        //     throw new Error("Échec du chargement du modèle OCR.");
+        // }
 
         return ocrModel;
     } catch (error) {
