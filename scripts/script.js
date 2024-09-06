@@ -13,7 +13,7 @@ let ocrModel = null;
     try {
         await tf.setBackend('webgl');
         await tf.ready();
-        
+
         detectionModel = await tf.loadGraphModel('../models/model.json');
         ocrModel = await loadOcrModel();        
         showAlert('Les modèles sont chargés et prêts.');
@@ -26,11 +26,16 @@ let ocrModel = null;
 
 // Charger le modèle OCR personnalisé
 async function loadOcrModel() {
-    await tf.setBackend('wasm');
-    await tf.ready();
-   
+    try {
+        await tf.setBackend('wasm');
+        await tf.ready();
 
-    return await tflite.loadTFLiteModel('../models/ocr/model.tflite');
+        const ocrModel = await tflite.loadTFLiteModel('../models/ocr/model.tflite');
+        return ocrModel;
+    } catch (error) {
+        console.error("Erreur lors du chargement du modèle OCR:", error);
+        throw error;
+    }
 }
 
 // Activer/Désactiver la caméra
