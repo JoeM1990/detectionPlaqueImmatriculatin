@@ -103,33 +103,47 @@ async function detectLicensePlates() {
 
         // Convertir l'image en tenseur pour le modèle de détection
         let imgTensor = tf.browser.fromPixels(canvas).expandDims(0).toFloat().div(255);
+
+        // Redimensionner l'image à [1, 640, 640, 3]
         imgTensor = tf.image.resizeBilinear(imgTensor, [640, 640]);
+
+        // Réarranger les dimensions pour correspondre à la forme [1, 3, 640, 640]
         imgTensor = tf.transpose(imgTensor, [0, 3, 1, 2]);
 
         // Prédiction du modèle de détection
         const predictions = await detectionModel.executeAsync({ images: imgTensor });
 
-        console.log(predictions);
+        // Vérification si la sortie existe
+        if (predictions && predictions.length > 0 && predictions[0]) {
+            const predictionTensor = predictions[0];
 
-        // Filtrer les prédictions pour ne garder que les véhicules (selon votre modèle)
-        const plates = predictions[0].arraySync().filter(prediction => prediction[4] > 0.5); // Ajuster le seuil selon votre modèle
+            // Vérification si le tenseur contient des données
+            if (typeof predictionTensor.arraySync === 'function') {
+                // Filtrer les prédictions pour ne garder que les véhicules (ajuster selon votre modèle)
+                const plates = predictionTensor.arraySync().filter(prediction => prediction[4] > 0.5);
 
-        if (plates.length > 0) {
-            // Extraire la région d'intérêt (plaque d'immatriculation) pour le modèle OCR
-            const plateTensor = imgTensor.slice([0, 0, 0], [1, 640, 640, 3]); 
+                if (plates.length > 0) {
+                    // Extraire la région d'intérêt (plaque d'immatriculation) pour le modèle OCR
+                    const plateTensor = imgTensor.slice([0, 0, 0], [1, 640, 640, 3]);
 
-            // Utiliser le modèle OCR pour reconnaître les caractères
-            const ocrPredictions = await ocrModel.executeAsync(plateTensor);
-            const plateNumber = ocrPredictions.dataSync(); // Récupérer la prédiction du texte
+                    // Utiliser le modèle OCR pour reconnaître les caractères
+                    const ocrPredictions = await ocrModel.executeAsync(plateTensor);
+                    const plateNumber = ocrPredictions.dataSync(); // Récupérer la prédiction du texte
 
-            if (plateNumber) {
-                stopScanning();
-                resultDiv.innerText = `Plaque détectée : ${plateNumber}`;
+                    if (plateNumber) {
+                        stopScanning();
+                        resultDiv.innerText = `Plaque détectée : ${plateNumber}`;
+                    } else {
+                        resultDiv.innerText = 'Impossible de lire la plaque.';
+                    }
+                } else {
+                    resultDiv.innerText = 'Aucune plaque détectée.';
+                }
             } else {
-                resultDiv.innerText = 'Impossible de lire la plaque.';
+                console.error('Le tenseur de prédiction ne contient pas de fonction arraySync().');
             }
         } else {
-            resultDiv.innerText = 'Aucune plaque détectée.';
+            console.error('Les prédictions ne sont pas valides.');
         }
     } catch (error) {
         console.error('Erreur lors de la détection:', error);
