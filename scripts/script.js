@@ -1,3 +1,5 @@
+/* Author: Jonathan Monkila */
+
 const video = document.getElementById('video');
 const resultDiv = document.getElementById('result');
 const toggleCameraButton = document.getElementById('toggleCameraButton');
