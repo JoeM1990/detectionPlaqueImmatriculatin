@@ -129,7 +129,7 @@ async function detectLicensePlates() {
                     if (plateNumber) {
                         stopScanning();
                         resultDiv.innerText = `Plaque détectée : ${plateNumber}`;
-                        
+
                         //Verification du numero dans la base de donnees
                         checkNumPlate(plateNumber);
 
@@ -180,4 +180,12 @@ function openModal() {
 
 function closeModal() {
     document.getElementById("infoModal").style.display = "none";
+}
+
+function addModal() {
+    document.getElementById("addModal").style.display = "block";
+}
+
+function closeAddModal() {
+    document.getElementById("addModal").style.display = "none";
 }
