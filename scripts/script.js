@@ -32,7 +32,7 @@ let ocrModel = null;
             .catch(error => console.error('Erreur de chargement de la configuration :', error));
 
     } catch (error) {
-        showAlert('Erreur lors du chargement des modèles: ' +error + '\n' + 'Veuillez réessayer.', 1500);
+        showAlert('Erreur lors du chargement des modèles: ' + error + '\n' + 'Veuillez réessayer.', 1500);
     }
 })();
 
@@ -193,7 +193,7 @@ function verifyPlate() {
             showAlert('Numéro de plaque : ' + data[0]['numero'] + '\n' + 'État : ' + data[0]['statut'], 3000);
         })
         .catch(error => {
-            showAlert('Error: '+ error, 1500);
+            showAlert('Error: ' + error, 1500);
         });
 }
 
@@ -207,19 +207,20 @@ function addPlateInfos() {
         numero: numero,
         statut: statut,
         proprietaire: proprietaire,
-      };
+    };
 
-      fetch(`${apiUrl}/cars`,{
+    fetch(`${apiUrl}/cars`, {
         method: 'POST',
         body: JSON.stringify(formData)
-      })
-      .then(response => response.json())
-      .then(data => {
-          showAlert('Effectué', 3000);
-      })
-      .catch(error => {
-          showAlert('Error: '+ error, 1500);
-      });
+    })
+        .then(response => response.json())
+        .then(data => {
+            closeAddModal();
+            showAlert('Effectué', 3000);
+        })
+        .catch(error => {
+            showAlert('Error: ' + error, 1500);
+        });
 }
 
 
