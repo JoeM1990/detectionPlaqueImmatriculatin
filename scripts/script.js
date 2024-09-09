@@ -5,6 +5,8 @@ const resultDiv = document.getElementById('result');
 const toggleCameraButton = document.getElementById('toggleCameraButton');
 const scanLine = document.getElementById('scanLine');
 
+const apiUrl = process.env.API_URL;
+
 let stream = null;
 let scanning = false;
 let detectionModel = null;
