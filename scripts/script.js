@@ -12,12 +12,7 @@ let scanning = false;
 let detectionModel = null;
 let ocrModel = null;
 
-fetch('../config.json')
-            .then(response => response.json())
-            .then(data => {
-                config = data;
-            })
-            .catch(error => console.error('Erreur de chargement de la configuration :', error));
+
 
 // Charger les modèles dès le chargement de la page
 (async function () {
@@ -27,11 +22,19 @@ fetch('../config.json')
 
         detectionModel = await tf.loadGraphModel('../models/model.json');
         ocrModel = await loadOcrModel();
-        showAlert('Les modèles sont chargés et prêts.');
+        showAlert('Les modèles sont chargés et prêts.', 1500);
         console.log('Les modèles sont chargés et prêts.');
+
+        fetch('../config.json')
+            .then(response => response.json())
+            .then(data => {
+                config = data;
+            })
+            .catch(error => console.error('Erreur de chargement de la configuration :', error));
+            
     } catch (error) {
         console.error('Erreur lors du chargement des modèles:', error);
-        showAlert('Erreur lors du chargement des modèles. Veuillez réessayer.');
+        showAlert('Erreur lors du chargement des modèles. Veuillez réessayer.', 1500);
     }
 })();
 
@@ -62,7 +65,7 @@ toggleCameraButton.addEventListener('click', async () => {
             startScanning();
         } catch (error) {
             console.error('Erreur lors de l\'activation de la caméra:', error);
-            showAlert('Impossible d\'accéder à la caméra.');
+            showAlert('Impossible d\'accéder à la caméra.', 1500);
         }
     } else {
         stopCamera();
@@ -95,7 +98,7 @@ function stopScanning() {
 // Détecter les plaques d'immatriculation
 async function detectLicensePlates() {
     if (!detectionModel || !ocrModel) {
-        showAlert('Les modèles ne sont pas encore chargés. Veuillez patienter.');
+        showAlert('Les modèles ne sont pas encore chargés. Veuillez patienter.', 1500);
         return;
     }
 
@@ -165,7 +168,7 @@ document.getElementById('captureButton').addEventListener('click', () => {
     if (stream && scanning) {
         detectLicensePlates();
     } else {
-        showAlert('Veuillez d\'abord activer la caméra.');
+        showAlert('Veuillez d\'abord activer la caméra.', 1500);
     }
 });
 
