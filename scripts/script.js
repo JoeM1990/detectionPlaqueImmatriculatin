@@ -169,13 +169,13 @@ document.getElementById('captureButton').addEventListener('click', () => {
     }
 });
 
-function showAlert(message) {
+function showAlert(message, time) {
     document.getElementById('infos-message').textContent = message;
     document.getElementById("messageModal").style.display = "block";
 
     setTimeout(function () {
         document.getElementById("messageModal").style.display = "none";
-    }, 1500);
+    }, time);
 }
 
 function checkNumPlate(number) {
@@ -187,10 +187,10 @@ function verifyPlate() {
     const apiUrl = config.apiUrl; 
 
     fetch(`${apiUrl}/cars?numero=` + numero)
+        .then(response => response.json())
         .then(data => {
-            const res = data.json()
-            console.log(res)
-            showAlert('Numéro de plaque : ' + data.numero + '\n' + 'État : ' + data.statut);
+            closeVerifyModal();
+            showAlert('Numéro de plaque : ' + data[0]['numero'] + '\n' + 'État : ' + data[0]['statut'], 3000);
         })
         .catch(error => console.error('Erreur:', error));
 }
