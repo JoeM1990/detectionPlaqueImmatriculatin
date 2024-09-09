@@ -22,8 +22,7 @@ let ocrModel = null;
 
         detectionModel = await tf.loadGraphModel('../models/model.json');
         ocrModel = await loadOcrModel();
-        showAlert('Les modèles sont chargés et prêts.', 1500);
-        console.log('Les modèles sont chargés et prêts.');
+        showAlert('Les modèles sont chargés et prêts.', 1000);
 
         fetch('../config.json')
             .then(response => response.json())
@@ -33,8 +32,7 @@ let ocrModel = null;
             .catch(error => console.error('Erreur de chargement de la configuration :', error));
 
     } catch (error) {
-        console.error('Erreur lors du chargement des modèles:', error);
-        showAlert('Erreur lors du chargement des modèles. Veuillez réessayer.', 1500);
+        showAlert('Erreur lors du chargement des modèles: ' +error + '\n' + 'Veuillez réessayer.', 1500);
     }
 })();
 
@@ -195,7 +193,9 @@ function verifyPlate() {
             closeVerifyModal();
             showAlert('Numéro de plaque : ' + data[0]['numero'] + '\n' + 'État : ' + data[0]['statut'], 3000);
         })
-        .catch(error => console.error('Erreur:', error));
+        .catch(error => {
+            showAlert('Error: '+ error, 1500);
+        });
 }
 
 
