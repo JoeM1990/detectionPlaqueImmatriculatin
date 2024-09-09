@@ -174,11 +174,15 @@ function checkNumPlate(number){
 }
 
 function verifyPlate(){
-
+    fetch('https://api.example.com/data')
+        .then(response =>{
+            const data =response.json()
+        } )
+        .catch(error => console.error('Error:', error));
 }
 
 function addPlateInfos(){
-    
+
 }
 
 
