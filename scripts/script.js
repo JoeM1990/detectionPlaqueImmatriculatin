@@ -62,8 +62,7 @@ toggleCameraButton.addEventListener('click', async () => {
             toggleCameraButton.innerHTML = '<i class="fas fa-video-slash"></i>';
             startScanning();
         } catch (error) {
-            console.error('Erreur lors de l\'activation de la caméra:', error);
-            showAlert('Impossible d\'accéder à la caméra.', 1500);
+            showAlert('Impossible d\'accéder à la caméra. \n' + error, 1500);
         }
     } else {
         stopCamera();
@@ -153,7 +152,7 @@ async function detectLicensePlates() {
                 console.error('Le tenseur de prédiction ne contient pas de fonction arraySync().');
             }
         } else {
-            console.error('Les prédictions ne sont pas valides.');
+            showAlert('Les prédictions ne sont pas valides.', 1500);
         }
     } catch (error) {
         console.error('Erreur lors de la détection:', error);
