@@ -182,7 +182,7 @@ function closeModal() {
     document.getElementById("infoModal").style.display = "none";
 }
 
-function addModal() {
+function openAddModal() {
     document.getElementById("addModal").style.display = "block";
 }
 
