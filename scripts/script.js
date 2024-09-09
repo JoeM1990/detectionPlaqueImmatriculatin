@@ -41,10 +41,6 @@ async function loadOcrModel() {
     try {
         // await tf.setBackend('wasm');
         // await tf.ready();
-
-        // if (!tflite) {
-        //     throw new Error('tflite non défini ou non disponible');
-        // }
         const ocrModel = await tf.loadGraphModel('../models/crnn/model.json');
         return ocrModel;
     } catch (error) {
@@ -200,20 +196,18 @@ function verifyPlate() {
 
 function addPlateInfos() {
     const apiUrl = config.apiUrl;
-    
+
     let numero = document.getElementById('numero').value;
     let statut = document.getElementById('etat').value;
     let proprietaire = document.getElementById('proprietaire').value;
 
-    const formData = {
-        numero: numero,
-        statut: statut,
-        proprietaire: proprietaire,
-    };
-
     fetch(`${apiUrl}/cars`, {
         method: 'POST',
-        body: JSON.stringify(formData)
+        body: {
+            'numero': numero,
+            'statut': statut,
+            'proprietaire': proprietaire,
+        }
     })
         .then(response => response.json())
         .then(data => {
