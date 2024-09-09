@@ -35,13 +35,8 @@ async function loadOcrModel() {
         // if (!tflite) {
         //     throw new Error('tflite non défini ou non disponible');
         // }
-
         const ocrModel = await tf.loadGraphModel('../models/crnn/model.json');
-
-        // if (!ocrModel) {
-        //     throw new Error("Échec du chargement du modèle OCR.");
-        // }
-
+        
         return ocrModel;
     } catch (error) {
         console.error("Erreur lors du chargement du modèle OCR:", error);
