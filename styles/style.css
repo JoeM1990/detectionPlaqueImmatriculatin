@@ -182,7 +182,7 @@ h2 {
 
 .form-group input:focus,
 .form-group select:focus {
-    border-color: #007bff;
+    border-color: #28a745;
     outline: none;
 }
 
