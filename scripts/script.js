@@ -186,10 +186,10 @@ function verifyPlate() {
     let numero = document.getElementById('numeroVerify').value;
     const apiUrl = config.apiUrl; 
 
-    fetch(`${apiUrl}?numero=` + numero)
-        .then(response => response.json())
+    fetch(`${apiUrl}/cars?numero=` + numero)
         .then(data => {
-            console.log(data);
+            const res = data.json()
+            console.log(res)
             showAlert('Numéro de plaque : ' + data.numero + '\n' + 'État : ' + data.statut);
         })
         .catch(error => console.error('Erreur:', error));
