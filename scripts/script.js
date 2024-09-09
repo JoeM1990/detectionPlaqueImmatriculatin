@@ -173,15 +173,17 @@ function checkNumPlate(number){
 
 }
 
-function verifyPlate(){
+function verifyPlate() {
     let numero = document.getElementById('numeroVerify').value;
-    fetch('https://fakeapi-wqoi.onrender.com/cars?numero='+numero)
-        .then(response =>{
-            const data =response.json()
-            showAlert('Numero plaque : ' + data.numero + '\n ' + 'Etat : ' + data.etat);
-        } )
-        .catch(error => console.error('Error:', error));
+    
+    fetch('https://fakeapi-wqoi.onrender.com/cars?numero=' + numero)
+        .then(response => response.json())
+        .then(data => {
+            showAlert('Numéro de plaque : ' + data.numero + '\n' + 'État : ' + data.statut);
+        })
+        .catch(error => console.error('Erreur:', error));
 }
+
 
 function addPlateInfos(){
 
