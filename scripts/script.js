@@ -199,6 +199,8 @@ function verifyPlate() {
 
 
 function addPlateInfos() {
+    const apiUrl = config.apiUrl;
+    
     let numero = document.getElementById('numero').value;
     let statut = document.getElementById('etat').value;
     let proprietaire = document.getElementById('proprietaire').value;
