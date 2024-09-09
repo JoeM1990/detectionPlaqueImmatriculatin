@@ -174,10 +174,11 @@ function checkNumPlate(number){
 }
 
 function verifyPlate(){
-    
-    fetch('https://fakeapi-wqoi.onrender.com/cars?numero=')
+    let numero = document.getElementById('numeroVerify').value;
+    fetch('https://fakeapi-wqoi.onrender.com/cars?numero='+numero)
         .then(response =>{
             const data =response.json()
+            showAlert('Numero plaque : ' + data.numero + '\n ' + 'Etat : ' + data.etat);
         } )
         .catch(error => console.error('Error:', error));
 }
