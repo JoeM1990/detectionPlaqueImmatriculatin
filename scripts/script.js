@@ -189,3 +189,11 @@ function openAddModal() {
 function closeAddModal() {
     document.getElementById("addModal").style.display = "none";
 }
+
+function openVerifyModal() {
+    document.getElementById("verifyModal").style.display = "block";
+}
+
+function closeVerifyModal() {
+    document.getElementById("verifyModal").style.display = "none";
+}
