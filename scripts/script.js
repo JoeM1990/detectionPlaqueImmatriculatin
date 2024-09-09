@@ -202,6 +202,23 @@ function addPlateInfos() {
     let numero = document.getElementById('numero').value;
     let statut = document.getElementById('etat').value;
     let proprietaire = document.getElementById('proprietaire').value;
+
+    const formData = {
+        numero: numero,
+        statut: statut,
+        proprietaire: proprietaire,
+      };
+
+      fetch(`${apiUrl}/cars`,{
+        body: JSON.stringify(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+          showAlert('Effectué', 3000);
+      })
+      .catch(error => {
+          showAlert('Error: '+ error, 1500);
+      });
 }
 
 
