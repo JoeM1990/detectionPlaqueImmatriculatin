@@ -174,7 +174,8 @@ function checkNumPlate(number){
 }
 
 function verifyPlate(){
-    fetch('https://api.example.com/data')
+    
+    fetch('https://fakeapi-wqoi.onrender.com/cars?numero=')
         .then(response =>{
             const data =response.json()
         } )
