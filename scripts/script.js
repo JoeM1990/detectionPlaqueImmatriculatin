@@ -5,12 +5,19 @@ const resultDiv = document.getElementById('result');
 const toggleCameraButton = document.getElementById('toggleCameraButton');
 const scanLine = document.getElementById('scanLine');
 
-const apiUrl = process.env.API_URL;
+let config = {};
 
 let stream = null;
 let scanning = false;
 let detectionModel = null;
 let ocrModel = null;
+
+fetch('../config.json')
+            .then(response => response.json())
+            .then(data => {
+                config = data;
+            })
+            .catch(error => console.error('Erreur de chargement de la configuration :', error));
 
 // Charger les modèles dès le chargement de la page
 (async function () {
@@ -177,7 +184,7 @@ function checkNumPlate(number) {
 
 function verifyPlate() {
     let numero = document.getElementById('numeroVerify').value;
-    fetch('https://fakeapi-wqoi.onrender.com/cars?numero=' + numero, {
+    fetch(`${apiUrl}?numero=` + numero, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
