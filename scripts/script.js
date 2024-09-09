@@ -7,17 +7,17 @@ const scanLine = document.getElementById('scanLine');
 
 let stream = null;
 let scanning = false;
-let detectionModel = null;  
-let ocrModel = null;        
+let detectionModel = null;
+let ocrModel = null;
 
 // Charger les modèles dès le chargement de la page
-(async function() {
+(async function () {
     try {
         // await tf.setBackend('wasm');
         // await tf.ready();
 
         detectionModel = await tf.loadGraphModel('../models/model.json');
-        ocrModel = await loadOcrModel();        
+        ocrModel = await loadOcrModel();
         showAlert('Les modèles sont chargés et prêts.');
         console.log('Les modèles sont chargés et prêts.');
     } catch (error) {
@@ -166,7 +166,7 @@ function showAlert(message) {
     document.getElementById('infos-message').textContent = message;
     document.getElementById("messageModal").style.display = "block";
 
-    setTimeout(function() {
+    setTimeout(function () {
         document.getElementById("messageModal").style.display = "none";
     }, 1500);
 }
