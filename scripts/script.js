@@ -129,8 +129,10 @@ async function detectLicensePlates() {
                     if (plateNumber) {
                         stopScanning();
                         resultDiv.innerText = `Plaque détectée : ${plateNumber}`;
+                        
                         //Verification du numero dans la base de donnees
                         checkNumPlate(plateNumber);
+
                     } else {
                         resultDiv.innerText = 'Impossible de lire la plaque.';
                     }
