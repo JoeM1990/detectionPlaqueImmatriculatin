@@ -165,6 +165,10 @@ function showAlert(message) {
     }, 1500);
 }
 
+function checkNumPlate(){
+    
+}
+
 
 function openModal() {
     document.getElementById("infoModal").style.display = "block";
