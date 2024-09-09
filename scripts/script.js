@@ -31,7 +31,7 @@ let ocrModel = null;
                 config = data;
             })
             .catch(error => console.error('Erreur de chargement de la configuration :', error));
-            
+
     } catch (error) {
         console.error('Erreur lors du chargement des modèles:', error);
         showAlert('Erreur lors du chargement des modèles. Veuillez réessayer.', 1500);
@@ -187,7 +187,7 @@ function checkNumPlate(number) {
 
 function verifyPlate() {
     let numero = document.getElementById('numeroVerify').value;
-    const apiUrl = config.apiUrl; 
+    const apiUrl = config.apiUrl;
 
     fetch(`${apiUrl}/cars?numero=` + numero)
         .then(response => response.json())
