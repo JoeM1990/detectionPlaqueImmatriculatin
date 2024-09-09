@@ -154,6 +154,13 @@ video {
     cursor: pointer;
 }
 
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
 .form-group {
     margin-bottom: 15px;
 }
@@ -179,17 +186,17 @@ video {
     outline: none;
 }
 
-button {
+.btn-form {
     width: 100%;
     padding: 10px;
     border: none;
-    background-color: #007bff;
+    background-color: #28a745;
     color: white;
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #0056b3;
+.btn-form:hover {
+    background-color: #218838;
 }

@@ -42,6 +42,35 @@
         <div class="modal-content">
             <span class="close" onclick="closeAddModal()">&times;</span>
             <h2 style="color: #28a745;">Formulaire</h2>
+            <div class="form-container">
+                <h2>Informations du Véhicule</h2>
+                
+                <form id="vehicle-form">
+                    <div class="form-group">
+                        <label for="numero">Numéro de Plaque</label>
+                        <input type="text" id="numero" name="numero" placeholder="Entrez le numéro de la plaque" required>
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="etat">État du Véhicule</label>
+                        <select id="etat" name="etat" required>
+                            <option value="">Sélectionnez un état</option>
+                            <option value="neuf">Neuf</option>
+                            <option value="occasion">Occasion</option>
+                            <option value="endommagé">Endommagé</option>
+                        </select>
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="proprietaire">Propriétaire</label>
+                        <input type="text" id="proprietaire" name="proprietaire" placeholder="Entrez le nom du propriétaire" required>
+                    </div>
+            
+                    <div class="form-group">
+                        <button type="submit" class="btn-form">Soumettre</button>
+                    </div>
+                </form>
+            </div>
             
         </div>
     </div>
