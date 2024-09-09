@@ -219,6 +219,7 @@ function addPlateInfos() {
             showAlert('Effectué', 3000);
         })
         .catch(error => {
+            console.log('error :', error);
             showAlert('Error: ' + error, 1500);
         });
 }
