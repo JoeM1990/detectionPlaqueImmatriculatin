@@ -201,13 +201,18 @@ function addPlateInfos() {
     let statut = document.getElementById('etat').value;
     let proprietaire = document.getElementById('proprietaire').value;
 
+    const formData = {
+        'numero': numero,
+        'statut': statut,
+        'proprietaire': proprietaire,
+    };
+
     fetch(`${apiUrl}/cars`, {
         method: 'POST',
-        body: {
-            'numero': numero,
-            'statut': statut,
-            'proprietaire': proprietaire,
-        }
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
     })
         .then(response => response.json())
         .then(data => {
