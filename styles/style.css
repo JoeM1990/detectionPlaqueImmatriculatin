@@ -89,7 +89,7 @@ video {
     animation: scanAnimation 3s linear infinite;
 }
 
-/* @keyframes scanAnimation {
+@keyframes scanAnimation {
     0% {
         top: 0;
     }
@@ -101,7 +101,7 @@ video {
     100% {
         top: 0;
     }
-} */
+}
 
 .navbar {
     position: absolute;
