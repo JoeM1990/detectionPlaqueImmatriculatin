@@ -169,23 +169,28 @@ function showAlert(message) {
     }, 1500);
 }
 
-function checkNumPlate(number){
+function checkNumPlate(number) {
 
 }
 
 function verifyPlate() {
     let numero = document.getElementById('numeroVerify').value;
-    
-    fetch('https://fakeapi-wqoi.onrender.com/cars?numero=' + numero)
+    fetch('https://fakeapi-wqoi.onrender.com/cars?numero=' + numero, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             showAlert('Numéro de plaque : ' + data.numero + '\n' + 'État : ' + data.statut);
         })
         .catch(error => console.error('Erreur:', error));
 }
 
 
-function addPlateInfos(){
+function addPlateInfos() {
 
 }
 
