@@ -210,6 +210,7 @@ function addPlateInfos() {
       };
 
       fetch(`${apiUrl}/cars`,{
+        method: 'POST',
         body: JSON.stringify(formData)
       })
       .then(response => response.json())
