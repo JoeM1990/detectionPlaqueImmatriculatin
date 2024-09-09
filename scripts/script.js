@@ -184,12 +184,9 @@ function checkNumPlate(number) {
 
 function verifyPlate() {
     let numero = document.getElementById('numeroVerify').value;
-    fetch(`${apiUrl}?numero=` + numero, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
+    const apiUrl = config.apiUrl; 
+
+    fetch(`${apiUrl}?numero=` + numero)
         .then(response => response.json())
         .then(data => {
             console.log(data);
