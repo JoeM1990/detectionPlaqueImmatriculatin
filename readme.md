@@ -13,7 +13,6 @@ Ce projet utilise **TensorFlow.js** pour détecter et reconnaître les plaques d
 
 Avant de commencer, assurez-vous que vous avez bien installé ou configuré les éléments suivants :
 
-- [Node.js](https://nodejs.org/) (optionnel pour la gestion de dépendances avec npm)
 - Un navigateur supportant **WebGL** pour l'exécution de **TensorFlow.js**
 - Une caméra intégrée ou connectée à votre appareil
 
@@ -52,4 +51,33 @@ Avant de commencer, assurez-vous que vous avez bien installé ou configuré les 
 
 3. Appuyez sur "Détecter" pour capturer l'image de la vidéo, détecter la plaque et afficher le résultat.
 
+
+## Scripts Principaux
+
+- **script.js** : Gère l'activation de la caméra, la capture d'images et l'exécution des modèles de détection et OCR.
+
+## Contribuer
+
+Les contributions sont les bienvenues ! Si vous avez des suggestions ou des corrections, veuillez ouvrir une issue ou un pull request sur GitHub.
+
+### Comment Contribuer
+
+1. Fork le projet
+2. Créez votre branche de fonctionnalité (`git checkout -b feature/ma-fonctionnalite`)
+3. Commitez vos changements (`git commit -m 'Ajout de ma fonctionnalité'`)
+4. Poussez votre branche (`git push origin feature/ma-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+## Auteurs
+
+- **Nom de l'auteur** - Créateur du projet - [VotreGitHub](https://github.com/votre-utilisateur)
+
+## Licence
+
+Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus d'informations.
+
+## Remerciements
+
+- [TensorFlow.js](https://www.tensorflow.org/js) pour l'exécution de modèles de machine learning dans le navigateur.
+- [Font Awesome](https://fontawesome.com/) pour les icônes utilisées dans l'interface utilisateur.
 
