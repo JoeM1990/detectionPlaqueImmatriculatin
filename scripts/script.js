@@ -229,7 +229,6 @@ function addPlateInfos() {
         });
 }
 
-
 function openModal() {
     document.getElementById("infoModal").style.display = "block";
 }
