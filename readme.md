@@ -45,7 +45,6 @@ Avant de commencer, assurez-vous que vous avez bien installé ou configuré les 
 
 3. Appuyez sur "Détecter" pour capturer l'image de la vidéo, détecter la plaque et afficher le résultat.
 
-
 ## Scripts Principaux
 
 - **script.js** : Gère l'activation de la caméra, la capture d'images et l'exécution des modèles de détection et OCR.
