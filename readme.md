@@ -21,8 +21,8 @@ Avant de commencer, assurez-vous que vous avez bien installé ou configuré les 
 1. Clonez ce dépôt sur votre machine locale :
 
     ```bash
-    git clone https://github.com/votre-utilisateur/votre-projet.git
-    cd votre-projet
+    git clone https://github.com/JoeM1990/detectionPlaqueImmatriculatin.git
+    cd detectionPlaqueImmatriculatin
     ```
 
 2. Installez les dépendances (si vous avez un fichier `package.json` pour gérer les dépendances avec npm) :
@@ -68,10 +68,6 @@ Les contributions sont les bienvenues ! Si vous avez des suggestions ou des corr
 4. Poussez votre branche (`git push origin feature/ma-fonctionnalite`)
 5. Ouvrez une Pull Request
 
-## Auteurs
-
-- [Joe Monkila](https://github.com/JoeM1990) - Créateur et Développeur Principal
-
 ## Licence
 
 Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus d'informations.
@@ -80,4 +76,10 @@ Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus d'
 
 - [TensorFlow.js](https://www.tensorflow.org/js) pour l'exécution de modèles de machine learning dans le navigateur.
 - [Font Awesome](https://fontawesome.com/) pour les icônes utilisées dans l'interface utilisateur.
+
+## Auteur
+
+- [Joe Monkila](https://github.com/JoeM1990) - Créateur et Développeur Principal
+
+
 
