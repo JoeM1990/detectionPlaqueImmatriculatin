@@ -184,11 +184,11 @@ async function checkNumPlate(number) {
         });
 }
 
-function verifyPlate() {
+async function verifyPlate() {
     let numero = document.getElementById('numeroVerify').value;
     const apiUrl = config.apiUrl;
 
-    fetch(`${apiUrl}/cars?numero=` + numero)
+    await fetch(`${apiUrl}/cars?numero=` + numero)
         .then(response => response.json())
         .then(data => {
             closeVerifyModal();
