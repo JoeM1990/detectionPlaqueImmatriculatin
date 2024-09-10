@@ -70,7 +70,7 @@ Les contributions sont les bienvenues ! Si vous avez des suggestions ou des corr
 
 ## Auteurs
 
-- **Nom de l'auteur** - Créateur du projet - [VotreGitHub](https://github.com/votre-utilisateur)
+- [Joe Monkila](https://github.com/JoeM1990) - Créateur et Développeur Principal
 
 ## Licence
 
