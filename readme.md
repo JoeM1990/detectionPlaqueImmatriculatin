@@ -25,13 +25,7 @@ Avant de commencer, assurez-vous que vous avez bien installé ou configuré les 
     cd detectionPlaqueImmatriculatin
     ```
 
-2. Installez les dépendances (si vous avez un fichier `package.json` pour gérer les dépendances avec npm) :
-
-    ```bash
-    npm install
-    ```
-
-3. Téléchargez les modèles de détection et OCR et placez-les dans le dossier `models` :
+2. Téléchargez les modèles de détection et OCR et placez-les dans le dossier `models` :
 
     - `detection_model.json` et les fichiers associés
     - `ocr_model.json` et les fichiers associés
