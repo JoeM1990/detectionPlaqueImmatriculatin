@@ -203,7 +203,6 @@ function verifyPlate() {
         });
 }
 
-
 function addPlateInfos() {
     const apiUrl = config.apiUrl;
 
