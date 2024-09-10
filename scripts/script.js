@@ -173,7 +173,6 @@ function showAlert(message, time) {
 
 function checkNumPlate(number) {
     const apiUrl = config.apiUrl;
-
     fetch(`${apiUrl}/cars?numero=` + number)
         .then(response => response.json())
         .then(data => {
