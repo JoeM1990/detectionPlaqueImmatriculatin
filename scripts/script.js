@@ -175,7 +175,17 @@ function showAlert(message, time) {
 }
 
 function checkNumPlate(number) {
+    const apiUrl = config.apiUrl;
 
+    fetch(`${apiUrl}/cars?numero=` + number)
+        .then(response => response.json())
+        .then(data => {
+            closeVerifyModal();
+            showAlert('Numéro de plaque : ' + data[0]['numero'] + '\n' + 'État : ' + data[0]['statut'], 3000);
+        })
+        .catch(error => {
+            showAlert('Error: ' + error, 1500);
+        });
 }
 
 function verifyPlate() {
