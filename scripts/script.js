@@ -12,8 +12,6 @@ let scanning = false;
 let detectionModel = null;
 let ocrModel = null;
 
-
-
 // Charger les modèles dès le chargement de la page
 (async function () {
     try {
