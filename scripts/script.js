@@ -199,7 +199,7 @@ async function verifyPlate() {
         });
 }
 
-function addPlateInfos() {
+async function addPlateInfos() {
     const apiUrl = config.apiUrl;
     let numero = document.getElementById('numero').value;
     let statut = document.getElementById('etat').value;
@@ -211,7 +211,7 @@ function addPlateInfos() {
         'proprietaire': proprietaire,
     };
 
-    fetch(`${apiUrl}/cars`, {
+    await fetch(`${apiUrl}/cars`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
