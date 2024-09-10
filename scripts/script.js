@@ -171,9 +171,9 @@ function showAlert(message, time) {
     }, time);
 }
 
-function checkNumPlate(number) {
+async function checkNumPlate(number) {
     const apiUrl = config.apiUrl;
-    fetch(`${apiUrl}/cars?numero=` + number)
+    await fetch(`${apiUrl}/cars?numero=` + number)
         .then(response => response.json())
         .then(data => {
             closeVerifyModal();
