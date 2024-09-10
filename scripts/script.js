@@ -21,7 +21,7 @@ let ocrModel = null;
         ocrModel = await loadOcrModel();
         showAlert('Les modèles sont chargés et prêts.', 1000);
 
-        fetch('../config.json')
+        await fetch('../config.json')
             .then(response => response.json())
             .then(data => {
                 config = data;
