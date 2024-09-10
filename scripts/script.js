@@ -17,7 +17,6 @@ let ocrModel = null;
     try {
         // await tf.setBackend('wasm');
         // await tf.ready();
-
         detectionModel = await tf.loadGraphModel('../models/model.json');
         ocrModel = await loadOcrModel();
         showAlert('Les modèles sont chargés et prêts.', 1000);
