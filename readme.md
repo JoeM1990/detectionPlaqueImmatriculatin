@@ -62,10 +62,6 @@ Les contributions sont les bienvenues ! Si vous avez des suggestions ou des corr
 4. Poussez votre branche (`git push origin feature/ma-fonctionnalite`)
 5. Ouvrez une Pull Request
 
-## Licence
-
-Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus d'informations.
-
 ## Remerciements
 
 - [TensorFlow.js](https://www.tensorflow.org/js) pour l'exécution de modèles de machine learning dans le navigateur.
