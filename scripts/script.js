@@ -21,10 +21,18 @@ let ocrModel = null;
         ocrModel = await loadOcrModel();
         showAlert('Les modèles sont chargés et prêts.', 1000);
 
-        await fetch('../config.json')
+        await fetch('../config.json',
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
             .then(response => response.json())
             .then(data => {
                 config = data;
+                alert(config);
             })
             .catch(error => console.error('Erreur de chargement de la configuration :', error));
 
@@ -173,7 +181,12 @@ function showAlert(message, time) {
 
 async function checkNumPlate(number) {
      const apiUrl = config.apiUrl
-    await fetch(`${apiUrl}/cars?numero=` + number)
+    await fetch(`${apiUrl}/cars?numero=` + number, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
         .then(response => response.json())
         .then(data => {
             closeVerifyModal();
@@ -188,7 +201,12 @@ async function verifyPlate() {
     let numero = document.getElementById('numeroVerify').value;
     const apiUrl = config.apiUrl
 
-    await fetch(`${apiUrl}/cars?numero=` + numero)
+    await fetch(`${apiUrl}/cars?numero=` + numero, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
         .then(response => response.json())
         .then(data => {
             closeVerifyModal();
