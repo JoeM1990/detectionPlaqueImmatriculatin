@@ -32,7 +32,6 @@ let ocrModel = null;
             .then(response => response.json())
             .then(data => {
                 config = data;
-                alert(config);
             })
             .catch(error => console.error('Erreur de chargement de la configuration :', error));
 
