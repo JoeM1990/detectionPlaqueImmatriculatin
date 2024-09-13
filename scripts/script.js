@@ -179,7 +179,7 @@ function showAlert(message, time) {
 }
 
 async function checkNumPlate(number) {
-     const apiUrl = config.apiUrl
+    const apiUrl = config.apiUrl
     await fetch(`${apiUrl}/cars?numero=` + number, {
         headers: {
             'Content-Type': 'application/json'
