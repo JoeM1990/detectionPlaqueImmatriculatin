@@ -181,7 +181,6 @@ function showAlert(message, time) {
 async function checkNumPlate(number) {
      const apiUrl = config.apiUrl
     await fetch(`${apiUrl}/cars?numero=` + number, {
-        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         }
@@ -201,7 +200,6 @@ async function verifyPlate() {
     const apiUrl = config.apiUrl
 
     await fetch(`${apiUrl}/cars?numero=` + numero, {
-        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         }
