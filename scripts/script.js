@@ -173,7 +173,7 @@ function showAlert(message, time) {
 
 async function checkNumPlate(number) {
      const apiUrl = config.apiUrl
-    await fetch(`${apiUrl}/cars?numero=` + number)
+    await fetch(`https://fakeapi-wqoi.onrender.com/cars?numero=` + number)
         .then(response => response.json())
         .then(data => {
             closeVerifyModal();
@@ -188,7 +188,7 @@ async function verifyPlate() {
     let numero = document.getElementById('numeroVerify').value;
     const apiUrl = config.apiUrl
 
-    await fetch(`${apiUrl}/cars?numero=` + numero)
+    await fetch(`https://fakeapi-wqoi.onrender.com/cars?numero=` + numero)
         .then(response => response.json())
         .then(data => {
             closeVerifyModal();
@@ -211,7 +211,7 @@ async function addPlateInfos() {
         'proprietaire': proprietaire,
     };
 
-    await fetch(`${apiUrl}/cars`, {
+    await fetch(`https://fakeapi-wqoi.onrender.com/cars`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
