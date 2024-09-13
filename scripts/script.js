@@ -172,7 +172,7 @@ function showAlert(message, time) {
 }
 
 async function checkNumPlate(number) {
-     const apiUrl = process.env.API_URL
+     const apiUrl = config.apiUrl
     await fetch(`${apiUrl}/cars?numero=` + number)
         .then(response => response.json())
         .then(data => {
@@ -186,7 +186,7 @@ async function checkNumPlate(number) {
 
 async function verifyPlate() {
     let numero = document.getElementById('numeroVerify').value;
-     const apiUrl = process.env.API_URL
+    const apiUrl = config.apiUrl
 
     await fetch(`${apiUrl}/cars?numero=` + numero)
         .then(response => response.json())
@@ -200,7 +200,7 @@ async function verifyPlate() {
 }
 
 async function addPlateInfos() {
-     const apiUrl = process.env.API_URL
+    const apiUrl = config.apiUrl
     let numero = document.getElementById('numero').value;
     let statut = document.getElementById('etat').value;
     let proprietaire = document.getElementById('proprietaire').value;
