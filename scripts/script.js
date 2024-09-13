@@ -17,11 +17,11 @@ let ocrModel = null;
     try {
         // await tf.setBackend('wasm');
         // await tf.ready();
-        detectionModel = await tf.loadGraphModel('../models/model.json');
+        detectionModel = await tf.loadGraphModel('/models/model.json');
         ocrModel = await loadOcrModel();
         showAlert('Les modèles sont chargés et prêts.', 1000);
 
-        await fetch('../config.json',
+        await fetch('/config.json',
             {
                 method: 'GET',
                 headers: {
@@ -46,7 +46,7 @@ async function loadOcrModel() {
     try {
         // await tf.setBackend('wasm');
         // await tf.ready();
-        const ocrModel = await tf.loadGraphModel('../models/crnn/model.json');
+        const ocrModel = await tf.loadGraphModel('/models/crnn/model.json');
         return ocrModel;
     } catch (error) {
         console.error("Erreur lors du chargement du modèle OCR:", error);
