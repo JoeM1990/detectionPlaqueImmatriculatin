@@ -1,4 +1,6 @@
-/* Author: Jonathan Monkila */
+/**
+ * @author Joe Monkila
+ */
 
 const video = document.getElementById('video');
 const resultDiv = document.getElementById('result');
